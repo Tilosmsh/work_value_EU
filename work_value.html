@@ -1,0 +1,90 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>工作性价比计算器</title>
+</head>
+<body>
+公式来源 https://www.zhihu.com/pin/1462200737735958528
+<form id="myForm" action="/"  name="Form1">
+  <input type="reset" name="Submit4" value="  重置默认值"><br>
+ 一 总年薪(元): <input type="text" name="salary" value="73000" onblur="myFunction()"><br><br>
+  二 工作环境系数: <input type="text" name="place" value="1" onblur="myFunction()"><br>
+  1.05 CBD、体制内等<br>
+  0.9  工厂、工地、艰苦户外等<br>
+  0.85 偏僻地区或郊区的工厂、工地、艰苦户外等<br>
+  异性环境（ 0.98 1 1.02）: <input type="text" name="gender" value="1" onblur="myFunction()"><br>
+  同事环境（ 0.98 1 1.02）: <input type="text" name="fellow" value="1" onblur="myFunction()"><br><br>
+ 
+三 双休系数: <input type="text" name="rest" value="1" onblur="myFunction()"><br>
+  1.05 双休以上<br>
+  1.0  实际双休<br>
+  0.95 大小周<br>
+  0.9  单休<br>
+  0.85 月休3日<br>
+  0.80 月休2日及以下<br>
+  上班时间系数: <input type="text" name="start" value="1" onblur="myFunction()"><br>
+  1.05 早10点<br>
+  1.0  早9点<br>
+  0.95 早8点<br>
+  下班时间系数: <input type="text" name="end" value="1" onblur="myFunction()"><br>
+  1.0不怎么义务加班<br>
+  0.95偶尔少量义务加班<br>
+  0.85经常较多义务加班<br><br>
+  四 工作时长（下班-上班，小时）: <input type="text" name="working" value="8" onblur="myFunction()"><br>
+  通勤时长（包含上下班来回）: <input type="text" name="commute" value="1" onblur="myFunction()"><br>
+  摸鱼时长（不干活+吃饭+午休）: <input type="text" name="lazy" value="1" onblur="myFunction()"><br><br>
+  五 学历系数: <input type="text" name="education" value="1" onblur="myFunction()"><br>
+  0.9 专科及以下<br>
+  1.0 普本<br>
+  1.1 211/985本<br>
+  1.6 普硕<br>
+  1.8 211/985硕<br>
+  2.0 普博<br>
+  2.4 211/985博<br><br>
+  六城市系数: <input type="text" name="city" value="1" onblur="myFunction()"><br>
+  1.1 一线<br>
+  1.05 强 二线城市<br>
+  0.9 (苏州、杭州、南京、武汉，成都等)城市系数为1.0<br>
+  1.0 二线城市<br>
+  0.9 三线及以下<br><br>
+  性价比:<input name="txt_bail" type="text" id="txt_bail" readonly="true"><br>
+</form> 
+
+<p><button onclick="myFunction()">点击计算</button></p>
+
+<script>
+function myFunction() {
+    var x = document.getElementById("myForm");
+//     var txt = "";
+//     var i;
+//     for (i = 0; i < x.length; i++) {
+//         txt = txt + x.elements[i].value + " ";
+//         x.elements[i].value;
+//     }
+//   document.getElementById("demo").innerHTML = txt;
+    var salary=Number(x.salary.value);
+	var place=Number(x.place.value);
+    var gender=Number(x.gender.value);
+    var fellow=Number(x.fellow.value);
+    var rest=Number(x.rest.value);
+    var start=Number(x.start.value);
+    var end=Number(x.end.value);
+    var working=Number(x.working.value);
+    var commute=Number(x.commute.value);
+    var lazy=Number(x.lazy.value);
+    var education=Number(x.education.value);
+    var city=Number(x.city.value);
+	
+	var a=(salary/365 * place*gender*fellow * rest*start*end);
+	var b=(25* (working + 0.5*commute - 0.5*lazy) * education * city );
+    var ratio=Math.sqrt(a/b);
+    document.Form1.txt_bail.value=ratio;
+
+}
+
+</script>
+
+</body>
+</html>
