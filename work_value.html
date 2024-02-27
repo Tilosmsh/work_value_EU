@@ -2,55 +2,55 @@
 <html>
 <head>
 <meta charset="utf-8">
-<title>工作性价比计算器</title>
+<title>Job Score Calculator for Western Europe</title>
 </head>
 <body>
 公式来源 https://www.zhihu.com/pin/1462200737735958528
 <form id="myForm" action="/"  name="Form1">
-  <input type="reset" name="reset_1" value="重置默认值"><br>
-  一 总年薪(元): <input type="text" name="salary" value="73000" onblur="myFunction()"><br><br>
-  二 工作环境系数: <input type="text" name="place" value="1" onblur="myFunction()"><br>
+  <input type="reset" name="reset_1" value="Default"><br>
+  I Total Annual Salary(€): <input type="text" name="salary" value="79726" onblur="myFunction()"><br><br>
+  II  Work Environment Coefficient: <input type="text" name="place" value="1" onblur="myFunction()"><br>
   1.05 CBD、体制内等<br>
   0.9  工厂、工地、艰苦户外等<br>
   0.85 偏僻地区或郊区的工厂、工地、艰苦户外等<br>
-  异性环境（ 0.98 1 1.02）: <input type="text" name="gender" value="1" onblur="myFunction()"><br>
-  同事环境（ 0.98 1 1.02）: <input type="text" name="fellow" value="1" onblur="myFunction()"><br><br>
-  三 休息系数: <input type="text" name="rest" value="1" onblur="myFunction()"><br>
-  1.05 双休以上<br>
-  1.0  实际双休<br>
-  0.95 大小周<br>
-  0.9  单休<br>
-  0.85 月休3日<br>
-  0.80 月休2日及以下<br>
-  上班时间系数: <input type="text" name="start" value="1" onblur="myFunction()"><br>
-  1.05 早10点及以后<br>
-  1.0  早9点<br>
-  0.95 早8点<br>
-  下班加班系数: <input type="text" name="end" value="1" onblur="myFunction()"><br>
-  1.0  不怎么义务加班<br>
-  0.95 偶尔少量义务加班<br>
-  0.85 经常较多义务加班<br><br>
-  四 总上班时间段（下班时刻-上班时刻，小时）: <input type="text" name="working" value="9" onblur="myFunction()"><br>
-  通勤时长（包含上下班来回）: <input type="text" name="commute" value="1" onblur="myFunction()"><br>
-  摸鱼时长（不干活+吃饭+午休，小于总上班时间段）: <input type="text" name="lazy" value="3" onblur="myFunction()"><br><br>
-  五 学历系数: <input type="text" name="education" value="1" onblur="myFunction()"><br>
-  0.9 专科及以下<br>
-  1.0 普本<br>
-  1.1 211/985本<br>
-  1.6 普硕<br>
-  1.8 211/985硕<br>
-  2.0 普博<br>
-  2.4 211/985博<br><br>
-  六 城市系数: <input type="text" name="city" value="1" onblur="myFunction()"><br>
-  1.1 一线<br>
-  1.05 强二线城市(苏州、杭州、南京、武汉，成都等)<br>
-  1.0 二线<br>
-  0.9 三线及以下<br><br>
-  性价比:<input type="text" name="ratio" readonly="true"><br>
+  Gender Equality（ 0.98 1 1.02）: <input type="text" name="gender" value="1" onblur="myFunction()"><br>
+  Colleagues（ 0.98 1 1.02）: <input type="text" name="fellow" value="1" onblur="myFunction()"><br><br>
+  III Paid Holidays coefficient: <input type="text" name="rest" value="1" onblur="myFunction()"><br>
+  1.05 33 Days<br>
+  1.0  30 Days<br>
+  0.95 27 Days<br>
+  0.9  25 Days<br>
+  0.85 23 Days<br>
+  0.80 20 Days<br>
+  Workday starts: <input type="text" name="start" value="1" onblur="myFunction()"><br>
+  1.05 10am+<br>
+  1.0  9am<br>
+  0.95 8am<br>
+  Workday ends: <input type="text" name="end" value="1" onblur="myFunction()"><br>
+  1.0  4pm<br>
+  0.95 4:30pm<br>
+  0.85 5pm <br><br>
+  IV Total Working Hours per Day: <input type="text" name="working" value="8" onblur="myFunction()"><br>
+  Commuting Time: <input type="text" name="commute" value="1" onblur="myFunction()"><br>
+  Leisure Time（not working+Lunch+Pause，inferior to total working hours）: <input type="text" name="lazy" value="3" onblur="myFunction()"><br><br>
+  V Education: <input type="text" name="education" value="1" onblur="myFunction()"><br>
+  0.9 Vocational school<br>
+  1.0 Bachelor<br>
+  1.1 Top Bachelor<br>
+  1.6 Master<br>
+  1.8 Top Master<br>
+  2.0 Doctorate<br>
+  2.4 Top Doctorate<br><br>
+  VI City Coefficient: <input type="text" name="city" value="1" onblur="myFunction()"><br>
+  1.1 First Tier (London, Paris, Amsterdam)<br>
+  1.05 Strong Second Tier (Munich, Zurich, Frankfurt, Stockholm)<br>
+  1.0 Second Tier (Berlin, Helsinki)<br>
+  0.9 Below Third Tier <br><br>
+  Job Score:<input type="text" name="ratio" readonly="true"><br>
 </form> 
 
-<button onclick="myFunction()">点击计算</button>
-<p>公式<br>
+<button onclick="myFunction()">Click to Calculate</button>
+<p>Formula<br>
 var a=(salary/365 * place*gender*fellow * rest*start*end);<br>
 var b=(25* (working + 0.5*commute - 0.5*lazy) * education * city);<br>
 var ratio=Math.sqrt(a/b);<br></p>
